@@ -1,5 +1,6 @@
 # Cocktail Advisor RAG System
-
+## Notes:
+- This task requires additional time to improve performance. First, we need a better embedding model to enhance the quality of vector representations. Alternatively, we could use a BM25 retriever or create one-hot encoded vectors using an LLM again, though this approach is not cost-efficient. My initial choice was to use an encoder model, but it has failed to retrieve data accurately. To address this, the model needs fine-tuning to better identify or differentiate cocktails. One of the most effective fine-tuning methods in this domain is Multiple Negatives Ranking with a custom Batch sampler(No similar drinks in the same batch). However, as mentioned earlier, this process requires more time.
 
 ## 🛠️ Prerequisites
 
@@ -32,7 +33,7 @@ pip install -r requirements.txt
 ## ⚙️ Configuration
 
 1. **Enviroment**
-I have pushed .env to because You dont have my pinecode api key.
+I have pushed .env to as you don't have my pinecode api key.
 
 2. **Create necessary directories**
 
