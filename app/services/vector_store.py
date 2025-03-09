@@ -50,7 +50,7 @@ class VectorStoreService:
         cocktails = []
         for match in matches:
             metadata = match['metadata']
-            if match['score'] > 0.25:
+            if match['score'] > 0.19:
                 cocktails.append({
                     "metadata": metadata,
                     "score": match['score']
@@ -58,7 +58,7 @@ class VectorStoreService:
             
         return cocktails
 
-    def search_cocktails(self, query: str, limit: int = 5, filters: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
+    def search_cocktails(self, query: str, limit: int = 20, filters: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
         """Search for cocktails based on a query string."""
         try:
             # Generate embedding for the query

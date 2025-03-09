@@ -97,7 +97,7 @@ class MemoryService:
                     }
             except json.JSONDecodeError as e:
                 logger.error(f"Failed to parse JSON from LLM response: {response}. Error: {str(e)}")
-                # Return empty preferences if parsing fails
+
                 return {
                     "favorite_ingredients": [],
                     "favorite_cocktails": []
@@ -124,14 +124,14 @@ class MemoryService:
             preferences = await self.detect_preferences(user_message)
             logger.info(f"Detected preferences for user {user_id}: {preferences}")
             
-            # Check if any preferences were detected
+
             has_preferences = len(preferences["favorite_ingredients"]) > 0 or len(preferences["favorite_cocktails"]) > 0
             
             if has_preferences:
-                # Add timestamp to preferences
+
                 preferences["timestamp"] = datetime.now().isoformat()
                 
-                # Store detected preferences in the vector store
+
                 memory_id = self.vector_store.store_user_memory(user_id, preferences)
                 if memory_id:
                     logger.info(f"Successfully stored preferences with ID {memory_id}")
@@ -162,7 +162,7 @@ class MemoryService:
             memories = self.vector_store.get_user_memories(user_id)
             logger.info(f"Retrieved {len(memories)} memory entries for user {user_id}")
             
-            # Aggregate all preferences from memories
+
             all_ingredients = set()
             all_cocktails = set()
             

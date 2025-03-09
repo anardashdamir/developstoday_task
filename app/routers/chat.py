@@ -28,7 +28,7 @@ async def chat(
     
     last_user_message = user_messages[-1].content
     
-    # Process the query through the RAG service
+
     response_text, sources = await rag_service.process_query(request.user_id, last_user_message)
     
     # Format the response
@@ -52,6 +52,5 @@ async def get_chat_history(user_id: str):
     Returns:
         List of chat messages in the conversation history
     """
-    # This is a placeholder - in a real application, you would retrieve
-    # the chat history from a database or other storage
+
     return []

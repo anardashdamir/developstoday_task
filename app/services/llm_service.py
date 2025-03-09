@@ -13,7 +13,7 @@ class LLMService:
             temperature=0.7,
             max_tokens=1000
         )
-        # Default system prompt as a fallback
+
         self.system_prompt = "You are a helpful AI assistant."
     
     async def generate_text(self, prompt: str, system_prompt: str = None) -> str:
@@ -28,19 +28,19 @@ class LLMService:
             Generated text response
         """
         try:
-            # Create messages list for the chat model
+
             messages = []
             
-            # Add system message with a valid content (use default if None provided)
+
             if system_prompt is not None:
                 messages.append(SystemMessage(content=system_prompt))
             else:
                 messages.append(SystemMessage(content=self.system_prompt))
             
-            # Add user message
+
             messages.append(HumanMessage(content=prompt))
             
-            # Direct invocation of the model
+
             response = await self.llm.ainvoke(messages)
             return response.content.strip()
             
@@ -81,10 +81,10 @@ class LLMService:
                 else:
                     raise ValueError(f"Invalid role: {role}")
             
-            # Prepend system message to the conversation
+
             final_messages = [SystemMessage(content=system_message)] + formatted_messages
             
-            # Direct invocation of the model
+
             response = await self.llm.ainvoke(final_messages)
             return response.content.strip()
             

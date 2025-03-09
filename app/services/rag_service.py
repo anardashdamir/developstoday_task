@@ -88,26 +88,24 @@ class RAGService:
             context = ""
             retrieved_cocktails = []
             
-            # Determine how many cocktails the user wants
-            # Default to 5 if not specified, max of 10
+
             requested_limit = 5  # Default value
             
             # Check if user specified a number in their query
             number_match = re.search(r'(?:show|give|get|list|display|recommend|suggest|find|want|need)\s+(?:me\s+)?(\d+)', query.lower())
             if number_match:
                 requested_number = int(number_match.group(1))
-                # Ensure requested number is between 1 and 10
                 requested_limit = max(1, max(10, requested_number))
             
             try:
-                # ENHANCEMENT: Augment query with user preferences before search
+    
                 enhanced_query = self._enhance_query_with_preferences(query, user_preferences)
                 logger.info(f"Searching with enhanced query: {enhanced_query}")
                 
-                # Use the enhanced query for vector search
+
                 cocktail_results = self.vector_store.search_cocktails(enhanced_query, limit=10)
                 
-                # Only use the number of cocktails requested or implied by the user
+                
                 limited_results = cocktail_results[:requested_limit]
                 sources = limited_results
 
@@ -134,8 +132,7 @@ class RAGService:
             
             # Generate response using LLM
             try:
-                # Building a prompt that forces the use of retrieved cocktails
-                # and respects the user's requested limit
+
                 augmented_prompt = f"""
                 You are a Cocktail Advisor chatbot that provides information about cocktails based on available data. Answer the user's question using the information provided below.
 
