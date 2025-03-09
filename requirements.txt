@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+langchain
+langchain-together
+langchain-community
+pinecone
+sentence-transformers
+pydantic
+python-dotenv
+jinja2
+together
